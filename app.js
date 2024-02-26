@@ -1,15 +1,15 @@
 import React from "react";
-import ReactDOM from "react-dom";
-const header = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement("div", { id: "child" }, [
-    React.createElement(
-      "h1",
-      { id: "heading" },
-      "Hello World! Welcome to React course 🚀"
-    ),
-    React.createElement("h2", {}, "this is h2 tag"),
-  ])
-);
-ReactDOM.render(header, document.getElementById("root"));
+import ReactDOM from "react-dom/client";
+import Navbar from "./Components/Navbar";
+import Restaurant from "./Components/Restaurant";
+import RestaurantList from "./Components/RestaurantList";
+import Location from "./Components/Location";
+function AppLayout() {
+  return (
+    <div>
+      <Navbar />
+    </div>
+  );
+}
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<AppLayout />);

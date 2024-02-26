@@ -1,9 +1,208 @@
-#heading{
-    color: bisque;
+*{
+    box-sizing: border-box;
 }
-#parent{
-    background-color: aqua;
+body{
+    margin: 0px;
 }
-#child{
-    background-color: blue;
+.navbarImage{
+    height: 80px;
+    width: 80px;
+    margin-left: 30px;
+    margin-top: 5px;
+    border-radius: 60%;
+}
+.navbarDiv{
+    position: relative;
+    height: 90px;
+    border-bottom-color: black;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.navbarList{
+    display: flex;
+    list-style: none;
+    float: right;
+    margin-top:30px;
+    margin-right: 50px;
+}
+.navbarDiv li{
+    padding-left: 50px;
+    font-size: 20px;
+    font-family: 'ui-serif', Courier, monospace;
+}
+/* Create four equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 19%;
+    margin: 5px;
+    height: 400px;
+    margin-left: 8px;
+    border-radius: 5px;
+}
+
+/* Clear floats after the columns */
+/* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+} */
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 1300px) {
+    .column {
+        width: 30%;
+        margin-left: 10px;
+    }
+}
+/* @media screen and (max-width: 1000px) {
+    .column {
+        width: 30%;
+    }
+} */
+@media screen and (max-width: 800px) {
+    .column {
+        width: 45%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+.cardImage{
+    height:180px;
+    width: 100%;
+    border-top-right-radius:5px;
+    border-top-left-radius: 5px;
+    -webkit-box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.39);
+        -moz-box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.39);
+        box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.39);
+}
+.resDetails{
+    margin-left: 10px;
+    margin-top: -17px;
+}
+.column:hover{
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    transition: all 0.4s ease 0s;
+    border: 1px solid black;
+}
+@media screen and (max-width: 800) {
+    .navbarList li{
+        padding-left: 30px;
+            font-size: 15;
+            font-family: 'ui-serif', Courier, monospace;
+    }
+}
+@media screen and (max-width: 600) {
+    .navbarList li {
+        padding-left: 25px;
+        font-size: 14;
+        font-family: 'ui-serif', Courier, monospace;
+    }
+}
+@media screen and (max-width: 800) {
+    .navbarImage {
+        height: 60px;
+        width: 60px;
+        margin-left: 30px;
+        margin-top: 5px;
+        border-radius: 60%;
+    }
+}
+
+@media screen and (max-width: 600) {
+    .navbarImage {
+        height: 60px;
+        width: 60px;
+        margin-left: 30px;
+        margin-top: 5px;
+        border-radius: 60%;
+    }
+}
+@media screen and (max-width: 800) {
+.navbarDiv {
+        position: relative;
+        height: 75px;
+        border-bottom-color: black;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    }
+}
+
+@media screen and (max-width: 600) {
+    .navbarDiv {
+            position: relative;
+            height: 70px;
+            border-bottom-color: black;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        }
+}
+.topRatedRes{
+    background-color: brown;
+    height: 50px;
+    width: 100%;
+    display: flex;
+}
+.topRatedRes button{
+    padding: 10px;
+    width: 200px;
+    margin: 5px;
+    cursor: pointer;
+}
+.shimmer-container {
+    display: flex;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.shimmer {
+    height: 300px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid rgb(238, 238, 238)
+}
+
+.divImg {
+    height: 200px;
+    width: 200px;
+    border-radius: 10px 10px 0px 0px;
+    background-color: rgb(238, 238, 238);
+}
+.resDetails p{
+    font-family: Basis_Grotesque_Pro;
+        font-weight: 200;
+        font-size: 16px;
+        line-height: 19px;
+        letter-spacing: -0.3px;
+        color: black;
+        overflow: hidden;
+        width: 100%;
+        display: -webkit-box;
+        overflow-wrap: break-word;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+}
+.resName{
+    font-weight: bold;
+}
+.searchInputBox{
+    /* padding: 5px; */
+    width: 500px;
+    height: 39px;
+    margin-top: 5px;
+    margin-left: 9px;
+}
+.fetchLocation{
+    border-style: none;
+    background-color: white;
+    font-size: 20px;
+    font-family: 'ui-serif', Courier, monospace;
 }
