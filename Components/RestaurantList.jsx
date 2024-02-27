@@ -7,6 +7,7 @@ import { APIURL } from "../Utils/swiggyAPI";
 function RestaurantList(props) {
   const [filterData, setFilterData] = useState(null);
   const [inputValue, setInputValue] = useState("");
+  const indexArray = [];
   function filterTopRestaurant() {
     const filterRes = resObj.filter((res) => res.info.avgRating > 4.0);
     setFilterData(filterRes);
@@ -15,17 +16,28 @@ function RestaurantList(props) {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(props.lat);
   const fetchData = async () => {
+    let count = 0;
     const apiData = await fetch(
       `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${props.lat}&lng=${props.lag}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
     const jsonData = await apiData.json();
+    const countValue = jsonData?.data?.cards.filter(
+      (c, index) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget"
+    );
+    const filterValue = countValue.filter(
+      (c) =>
+        c.card?.card?.gridElements?.infoWithStyle?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.FavouriteRestaurantInfoWithStyle"
+    );
+    console.log(filterValue);
     setFilterData(
-      jsonData?.data?.cards[4]?.card?.card.gridElements.infoWithStyle
-        .restaurants
+      filterValue[0]?.card?.card.gridElements.infoWithStyle.restaurants
     );
   };
+  console.log(filterData);
   const searchRestaurant = (e) => {
     setInputValue(e.target.value);
     console.log(inputValue);

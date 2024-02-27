@@ -12,7 +12,7 @@ function Navbar() {
     if (!location && !error) {
       timer = setTimeout(() => {
         handleFetchLocation();
-      }, 20000); // 20 seconds
+      }, 200); // 20 seconds
     }
     return () => clearTimeout(timer);
   }, [location, error]);
