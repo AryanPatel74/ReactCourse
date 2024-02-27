@@ -17,10 +17,12 @@ function RestaurantList(props) {
     fetchData();
   }, []);
   const fetchData = async () => {
-    let count = 0;
-    const apiData = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${props.lat}&lng=${props.lag}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
-    );
+    const swiggyAPI =
+      "https://corsproxy.org/?" +
+      encodeURIComponent(
+        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${props.lat}&lng=${props.lag}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+      );
+    const apiData = await fetch(swiggyAPI);
     const jsonData = await apiData.json();
     const countValue = jsonData?.data?.cards.filter(
       (c, index) =>
@@ -37,7 +39,6 @@ function RestaurantList(props) {
       filterValue[0]?.card?.card.gridElements.infoWithStyle.restaurants
     );
   };
-  console.log(filterData);
   const searchRestaurant = (e) => {
     setInputValue(e.target.value);
     console.log(inputValue);
