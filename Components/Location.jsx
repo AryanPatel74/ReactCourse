@@ -1,40 +1,18 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+import RestaurantList from "./RestaurantList";
+import { useLocation } from "../Utils/useLocation";
+import { UserContext } from "../app";
+import React, { createContext, useContext } from "react";
 const LocationComponent = () => {
-  const [location, setLocation] = useState(null);
-  const [error, setError] = useState(null);
-
-  const handleFetchLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-          setError(null);
-        },
-        (error) => {
-          setError(error.message);
-          setLocation(null);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser.");
-    }
-  };
-
+  const { location } = useContext(UserContext);
   return (
     <div>
-      <button onClick={handleFetchLocation}>Fetch Location</button>
-      <div>
-        {location && (
-          <div>
-            Latitude: {location.latitude}, Longitude: {location.longitude}
-          </div>
-        )}
-        {error && <div>{error}</div>}
-      </div>
+      {location == null ? (
+        <Shimmer />
+      ) : (
+        <RestaurantList lat={location.latitude} lag={location.longitude} />
+      )}
     </div>
   );
 };

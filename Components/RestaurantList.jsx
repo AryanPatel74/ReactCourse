@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
+import React, { createContext, useContext } from "react";
 import ReactDOM from "react-dom/client";
 import Restaurant from "./Restaurant";
 import Shimmer from "./Shimmer";
 import { APIURL } from "../Utils/swiggyAPI";
+import { Link } from "react-router-dom";
+import { UserContext } from "../app";
+import { useLocation } from "../Utils/useLocation";
 // Keys: Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:
 function RestaurantList(props) {
   const [filterData, setFilterData] = useState(null);
   const [inputValue, setInputValue] = useState("");
-  const indexArray = [];
   function filterTopRestaurant() {
-    const filterRes = resObj.filter((res) => res.info.avgRating > 4.0);
+    const filterRes = filterData.filter((res) => res.info.avgRating > 4.0);
     setFilterData(filterRes);
   }
 
@@ -68,22 +71,28 @@ function RestaurantList(props) {
         >
           Search Button
         </button>
-        <button type="button" onClick={filterTopRestaurant}>
+        <button
+          type="button"
+          className="searchButton"
+          onClick={filterTopRestaurant}
+        >
           Top Rated Restaurant
         </button>
       </div>
       <div className="res">
         {filterData.map((res) => (
-          <Restaurant
-            key={res.info.id}
-            resName={res.info.name}
-            avgRating={res.info.avgRating}
-            cuisines={res.info.cuisines}
-            locality={res.info.locality}
-            cloudinaryImageId={res.info.cloudinaryImageId}
-            costForTwo={res.info.costForTwo}
-            slaString={res.info.sla.slaString}
-          />
+          <Link to={"/restaurant/" + res.info.id}>
+            <Restaurant
+              key={res.info.id}
+              resName={res.info.name}
+              avgRating={res.info.avgRating}
+              cuisines={res.info.cuisines}
+              locality={res.info.locality}
+              cloudinaryImageId={res.info.cloudinaryImageId}
+              costForTwo={res.info.costForTwo}
+              slaString={res.info.sla.slaString}
+            />
+          </Link>
         ))}
       </div>
     </div>
